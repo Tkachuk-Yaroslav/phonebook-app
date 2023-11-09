@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/phonebook-app/static/css/main.be84c560.css",
+    "main.js": "/phonebook-app/static/js/main.a1223661.js",
+    "static/js/680.a001aca6.chunk.js": "/phonebook-app/static/js/680.a001aca6.chunk.js",
+    "static/css/978.b23373fc.chunk.css": "/phonebook-app/static/css/978.b23373fc.chunk.css",
+    "static/js/978.c6ab559b.chunk.js": "/phonebook-app/static/js/978.c6ab559b.chunk.js",
+    "static/css/172.7fdfa9ff.chunk.css": "/phonebook-app/static/css/172.7fdfa9ff.chunk.css",
+    "static/js/172.debf6e54.chunk.js": "/phonebook-app/static/js/172.debf6e54.chunk.js",
+    "static/css/607.fc021db7.chunk.css": "/phonebook-app/static/css/607.fc021db7.chunk.css",
+    "static/js/607.822a4dc1.chunk.js": "/phonebook-app/static/js/607.822a4dc1.chunk.js",
+    "static/js/874.c32491c7.chunk.js": "/phonebook-app/static/js/874.c32491c7.chunk.js",
+    "static/js/656.3f7e0fb9.chunk.js": "/phonebook-app/static/js/656.3f7e0fb9.chunk.js",
+    "index.html": "/phonebook-app/index.html",
+    "main.be84c560.css.map": "/phonebook-app/static/css/main.be84c560.css.map",
+    "main.a1223661.js.map": "/phonebook-app/static/js/main.a1223661.js.map",
+    "680.a001aca6.chunk.js.map": "/phonebook-app/static/js/680.a001aca6.chunk.js.map",
+    "978.b23373fc.chunk.css.map": "/phonebook-app/static/css/978.b23373fc.chunk.css.map",
+    "978.c6ab559b.chunk.js.map": "/phonebook-app/static/js/978.c6ab559b.chunk.js.map",
+    "172.7fdfa9ff.chunk.css.map": "/phonebook-app/static/css/172.7fdfa9ff.chunk.css.map",
+    "172.debf6e54.chunk.js.map": "/phonebook-app/static/js/172.debf6e54.chunk.js.map",
+    "607.fc021db7.chunk.css.map": "/phonebook-app/static/css/607.fc021db7.chunk.css.map",
+    "607.822a4dc1.chunk.js.map": "/phonebook-app/static/js/607.822a4dc1.chunk.js.map",
+    "874.c32491c7.chunk.js.map": "/phonebook-app/static/js/874.c32491c7.chunk.js.map",
+    "656.3f7e0fb9.chunk.js.map": "/phonebook-app/static/js/656.3f7e0fb9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be84c560.css",
+    "static/js/main.a1223661.js"
+  ]
+}
