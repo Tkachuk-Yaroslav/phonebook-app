@@ -1,0 +1,51 @@
+.form {
+  display: block;
+  /* width: 600px; */
+  /* margin-left: auto;
+  margin-right: auto; */
+  border: 1px solid #fff;
+  padding: 20px;
+}
+
+.nameLabel {
+  display: block;
+  margin-bottom: 20px;
+}
+.telLabel {
+  display: block;
+}
+
+.input {
+  display: block;
+  padding: 10px;
+  margin-top: 8px;
+}
+
+.input:focus {
+  border: 5px solid blue;
+  border-radius: 5px;
+  padding: 10px;
+  outline: none;
+}
+
+.addBtn {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: darkblue;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  height: 30px;
+  transform: scale(1);
+  transition: background-color 250ms linear, transform 1000ms linear;
+}
+
+.addBtn:hover,
+.addBtn:focus {
+  background-color: brown;
+  transform: scale(1.1);
+}
