@@ -3,7 +3,7 @@
 // import Filter from './Filter/Filter';
 // import { useSelector } from 'react-redux';
 // import { selectContactsArray } from 'redux/selectors';
-import { CirclesWithBar } from 'react-loader-spinner';
+// import { CirclesWithBar } from 'react-loader-spinner';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
 import { lazy, useEffect } from 'react';
@@ -13,7 +13,7 @@ import { refreshUser } from 'redux/auth/authOperations';
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import { getIsRefreshing } from 'redux/auth/authSelectors';
-import { Box } from '@mui/material';
+// import { Box } from '@mui/material';
 import { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
@@ -29,9 +29,9 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? (
-    <Box sx={{ mr: 'auto', ml: 'auto', width: '150px' }}>
-      {/* <b>Refreshing user...</b> */}
-      <CirclesWithBar
+    <>
+      <b>Refreshing user...</b>
+      {/* <CirclesWithBar
         height="100"
         width="100"
         color="#4fa94d"
@@ -42,8 +42,8 @@ export const App = () => {
         innerCircleColor=""
         barColor=""
         ariaLabel="circles-with-bar-loading"
-      />
-    </Box>
+      /> */}
+    </>
   ) : (
     <>
       <Routes>
