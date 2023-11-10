@@ -1,24 +1,14 @@
-import { addOneContact, deleteOneContact, getAllContacts } from 'api/contacts';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
-// export const fetchContacts = () => async dispatch => {
-//   try {
-//     dispatch(fetchingInProgress());
-//     const response = await getAllContacts();
-//     dispatch(fetchingSuccess(response));
-//   } catch (e) {
-//     dispatch(fetchingError(e.message));
-//   }
-// };
+import axios from 'axios';
+import createToast from 'utils/toast';
 
-///////////////////////////////////////////////////
 //fetchContacts - одержання масиву контактів (метод GET) запитом. Базовий тип екшену "contacts/fetchAll".
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, thunkAPI) => {
     try {
-      const response = await getAllContacts();
-      return response;
+      const response = await axios.get('/contacts');
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -30,8 +20,8 @@ export const addContact = createAsyncThunk(
   'contacts/addContact',
   async (contact, thunkAPI) => {
     try {
-      const response = await addOneContact(contact);
-      return response;
+      const response = await axios.post('/contacts', contact);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -41,12 +31,25 @@ export const addContact = createAsyncThunk(
 //deleteContact - видалення контакту (метод DELETE). Базовий тип екшену "contacts/deleteContact".
 export const deleteContact = createAsyncThunk(
   'contacts/deleteContact',
-  async (id, thunkAPI) => {
+  async (contactId, thunkAPI) => {
     try {
-      const response = await deleteOneContact(id);
-      // console.log(response, '>>>>>>');
-      toast.success(`${response.name} successfully deleted!`);
-      return response;
+      const response = await axios.delete(`/contacts/${contactId}`);
+      createToast('success', 'This contact was deleted!');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+//
+export const editContact = createAsyncThunk(
+  'contacts/editContact',
+  async ({ id, name, number }, thunkAPI) => {
+    try {
+      const response = await axios.patch(`/contacts/${id}`, { name, number });
+      createToast('success', 'This contact was edited!');
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }

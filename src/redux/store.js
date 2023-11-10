@@ -14,12 +14,6 @@ import { contactSlice } from './contacts/contactsSlice';
 import { filterSlice } from './filter/filterSlice';
 import { authSlice } from './auth/authSlice';
 
-// const rootReducer = combineReducers({
-//   contacts: contactSlice.reducer,
-//   filter: filterSlice.reducer,
-//   auth: authSlice.reducer,
-// });
-
 const authPersistConfig = {
   key: 'auth',
   storage,

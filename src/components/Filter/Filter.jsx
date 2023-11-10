@@ -1,25 +1,23 @@
-import { useDispatch, useSelector } from 'react-redux';
-import css from './Filter.module.css';
-
-import React from 'react';
+import { OutlinedInput } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import { search } from 'redux/filter/filterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.filter);
+
+  const handleInputChange = event => {
+    const newValue = event.target.value;
+    dispatch(search(newValue));
+  };
+
   return (
-    <div>
-      <label htmlFor="filterInput" className={css.label}>
-        &#128270; Find contacts by name &#128269;
-        <input
-          type="text"
-          className={css.input}
-          id="filterInput"
-          value={filter}
-          onChange={evt => dispatch(search(evt.currentTarget.value))}
-        />
-      </label>
-    </div>
+    <OutlinedInput
+      fullWidth
+      type="text"
+      name="filter"
+      placeholder="Search by name"
+      onChange={handleInputChange}
+    />
   );
 };
 

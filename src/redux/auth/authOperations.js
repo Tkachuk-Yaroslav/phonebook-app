@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import axios from 'axios';
-import toast from 'react-hot-toast';
+import createToast from 'utils/toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -20,7 +20,8 @@ export const register = createAsyncThunk(
       const resp = await axios.post('/users/signup', body);
       setToken(resp.data.token);
       // console.log(resp.data, '>>>>>');
-      toast.success(`Welcome to your phonebook, ${resp.data.user.name}!`);
+      const message = `Welcome to your phonebook, ${resp.data.user.name}!`;
+      createToast('success', message);
 
       return resp.data;
     } catch (error) {
@@ -34,7 +35,8 @@ export const logIn = createAsyncThunk('auth/login', async (body, thunkAPI) => {
     const resp = await axios.post('/users/login', body);
     setToken(resp.data.token);
     // console.log(resp.data, '>>>>>');
-    toast.success(`Welcome back, ${resp.data.user.name}!`);
+    const message = `Welcome back, ${resp.data.user.name}!`;
+    createToast('success', message);
     return resp.data;
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
@@ -45,7 +47,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
     unsetToken();
-    toast.success('Successfully log out!');
+    createToast('success', 'Successfully log out!');
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -55,7 +57,7 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    console.log(state);
+    // console.log(state);
 
     const persistedToken = state.auth.token;
     if (!persistedToken)
@@ -64,18 +66,14 @@ export const refreshUser = createAsyncThunk(
 
     try {
       const resp = await axios.get('/users/current');
-      console.log(resp.data, '>>>>>');
+      // console.log(resp.data, '>>>>>');
 
-      toast.success(`Welcome back, ${resp.data.name}!`);
+      const message = `Welcome back, ${resp.data.name}!`;
+      createToast('success', message);
+
       return resp.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
-// export const signUp = async body => {
-//   const response = await axios.post('/users/signup', body);
-//   console.log(response.data);
-//   return response.data;
-// };

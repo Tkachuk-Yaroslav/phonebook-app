@@ -1,114 +1,75 @@
-// import ContactList from './ContactList/ContactList';
-// import PhonebookForm from './PhonebookForm/PhonebookForm';
-// import Filter from './Filter/Filter';
-// import { useSelector } from 'react-redux';
-// import { selectContactsArray } from 'redux/selectors';
-// import { CirclesWithBar } from 'react-loader-spinner';
-import { Route, Routes } from 'react-router-dom';
-import Layout from './Layout/Layout';
 import { lazy, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import Layout from './Layout/Layout';
+// import HomePage from '../pages/HomePage/HomePage';
+// import SignUp from '../pages/RegisterPage/RegisterPage';
+// import SignIn from '../pages/LoginPage/LoginPage';
+// import Contacts from '../pages/ContactsPage/ContactsPage';
+// import Profile from '../pages/Profile/Profile';
 import { refreshUser } from 'redux/auth/authOperations';
-
 import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
-import { getIsRefreshing } from 'redux/auth/authSelectors';
-// import { Box } from '@mui/material';
-import { Toaster } from 'react-hot-toast';
-
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-const LoginPage = lazy(() => import('../pages/LoginPage/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
-const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
+const SignUp = lazy(() => import('../pages/RegisterPage/RegisterPage'));
+const SignIn = lazy(() => import('../pages/LoginPage/LoginPage'));
+const Contacts = lazy(() => import('../pages/ContactsPage/ContactsPage'));
+const Profile = lazy(() => import('../pages/Profile/Profile'));
 
-export const App = () => {
-  const isRefreshing = useSelector(getIsRefreshing);
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#FF5733',
+    },
+    secondary: {
+      main: '#E0C2FF',
+      light: '#F5EBFF',
+      contrastText: '#47008F',
+    },
+  },
+});
+
+const App = () => {
+  // Create a Redux dispatcher
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-  return isRefreshing ? (
-    <>
-      <b>Refreshing user...</b>
-      {/* <CirclesWithBar
-        height="100"
-        width="100"
-        color="#4fa94d"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-        outerCircleColor=""
-        innerCircleColor=""
-        barColor=""
-        ariaLabel="circles-with-bar-loading"
-      /> */}
-    </>
-  ) : (
-    <>
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route
-            path="/register"
+            path="registration"
             element={
-              <RestrictedRoute
-                component={<RegisterPage />}
-                redirectTo="/contacts"
-              />
+              <RestrictedRoute redirectTo="/contacts" component={<SignUp />} />
             }
           />
           <Route
-            path="/login"
+            path="login"
             element={
-              <RestrictedRoute
-                component={<LoginPage />}
-                redirectTo="/contacts"
-              />
+              <RestrictedRoute redirectTo="/contacts" component={<SignIn />} />
             }
           />
           <Route
-            path="/contacts"
+            path="contacts"
             element={
-              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+              <PrivateRoute redirectTo="/login" component={<Contacts />} />
             }
           />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <Toaster />
-    </>
+    </ThemeProvider>
   );
 };
-
-// const App = () => {
-// const { items, isLoading, error } = useSelector(selectContactsArray);
-
-//   return (
-// <div
-//   style={{
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//     marginLeft: 'auto',
-//     marginRight: 'auto',
-//     width: '600px',
-//     marginTop: '50px',
-//     backgroundColor: '#58c800',
-//     borderRadius: '20px',
-//     padding: '40px 20px',
-//     outline: 'auto #280a0a00',
-//     outlineOffset: '-20px',
-//   }}
-// >
-//   <h1>&#128222; Phonebook &#128218;</h1>
-//   <PhonebookForm />
-//   <h2>&#128104; Contacts &#128105;</h2>
-//   <Filter />
-//   {isLoading && <p>Loading contacts...</p>}
-//   {error && <p>{error}</p>}
-//   {items.length > 0 && !error && <ContactList />}
-// </div>
-//   );
-// };
 
 export default App;
