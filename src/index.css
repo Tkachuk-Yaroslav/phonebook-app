@@ -14,9 +14,9 @@ code {
     monospace;
 }
 
-header,
 main {
   /* margin-bottom: 20px; */
   border-bottom: 3px solid rgb(25 118 210);
   padding-bottom: 20px;
+  padding-top: 100px;
 }
