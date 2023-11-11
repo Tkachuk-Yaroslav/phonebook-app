@@ -13,6 +13,7 @@ import RestrictedRoute from './RestrictedRoute';
 import PrivateRoute from './PrivateRoute';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import NotFound from './NoFoundedPage/NoFoundedPage';
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const SignUp = lazy(() => import('../pages/RegisterPage/RegisterPage'));
 const SignIn = lazy(() => import('../pages/LoginPage/LoginPage'));
@@ -66,6 +67,7 @@ const App = () => {
           />
           <Route path="/profile" element={<Profile />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Toaster />
     </ThemeProvider>
